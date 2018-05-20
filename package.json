@@ -1,0 +1,23 @@
+{
+  "name": "Benzene",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "ethereumjs-testrpc": "^4.0.1",
+    "run-with-testrpc": "^0.2.1",
+    "truffle": "^3.4.9",
+    "truffle-hdwallet-provider": "0.0.5",
+    "zeppelin-solidity": "^1.9.0"
+  }
+}
