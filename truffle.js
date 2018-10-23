@@ -16,19 +16,16 @@ module.exports = {
       gas: 0x99999f
    },
    testing: {
-    provider: function() {
-      return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/" + key)
-    },
-    network_id: 3,
-    gas: 2186549,
-    gasPrice: 50
+    provider: new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/' + key),
+    network_id: '4',
+    gasPrice: 100000000000
    },
-   live: {
+   mainnet: {
     provider: function() {
       return new HDWalletProvider(mnemonic, "https://mainnet.infura.io/" + key)
     },
     network_id: 1,
-    gasPrice: 50
+    gasPrice: 4500000000
    }
   }
 };

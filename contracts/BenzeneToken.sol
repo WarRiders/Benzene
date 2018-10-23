@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
 
 import "./StandardBurnableToken.sol";
-import "zeppelin-solidity/contracts/token/ERC20/DetailedERC20.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/DetailedERC20.sol";
 import "./StandbyGamePool.sol";
 import "./TeamPool.sol";
 import "./AdvisorPool.sol";

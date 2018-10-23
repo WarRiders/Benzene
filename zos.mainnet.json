@@ -1,0 +1,34 @@
+{
+  "contracts": {
+    "GamePool": {
+      "address": "0x656589fd143a0846d09d32f57804e5c25cf5bca7",
+      "constructorCode": "608060405234801561001057600080fd5b50611e61806100206000396000f300",
+      "bodyBytecodeHash": "ef49d135e14ddb3e4bd3569ef3d3de3a5b6b844974a240ad0a3122657ec7878d",
+      "bytecodeHash": "4eada8130b401c51c4dba309efad323ffc549a2f71c79ba08d8a901bc1b3bd7b"
+    }
+  },
+  "proxies": {
+    "GamePool": [
+      {
+        "address": "0x83f11770176d959b19f9cc6e2d5a051cb101bdaf",
+        "version": "0.1.0",
+        "implementation": "0x05f97f4e170b4a07cc86e328679b69d4e5d7112a"
+      }
+    ]
+  },
+  "app": {
+    "address": "0x9017b0d90406ddc52f841ad07433121bf619b4df"
+  },
+  "version": "0.1.0",
+  "package": {
+    "address": "0x9cc4ad2b9b84c08b8e73c7dc8f5853861c3f531c"
+  },
+  "provider": {
+    "address": "0x94d95ad0cb347ff619602b4e271b3a6fad9d8291"
+  },
+  "stdlib": {
+    "name": "openzeppelin-zos",
+    "version": "1.9.4",
+    "address": "0xb48af4ee25f73cd714bb3623362cd0683b3e3a81"
+  }
+}
