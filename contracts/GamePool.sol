@@ -1,7 +1,9 @@
 pragma solidity ^0.4.24;
 
+import "./TokenUpdate.sol";
 import "zos-lib/contracts/migrations/Migratable.sol";
 import "openzeppelin-zos/contracts/ownership/Ownable.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/DetailedERC20.sol";
 import "./TokenPool.sol";
 import "./CarToken.sol";
 import "./CarFactory.sol";
@@ -68,5 +70,16 @@ contract GamePool is Migratable, TokenPool, Ownable {
             
             emit Redeem(user, currentCar, amount);
         }
+    }
+    
+    function migrate(address newToken) public onlyOwner {
+        //First approve all to transfer
+        DetailedERC20(token).approve(newToken, balance());
+        
+        TokenUpdate tokenUpdate = TokenUpdate(newToken);
+        
+        token = tokenUpdate;
+        
+        tokenUpdate.migrateAll(address(this));
     }
 }
