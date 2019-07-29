@@ -14,9 +14,10 @@ contract TeamPool is TokenPool, Ownable {
         uint256 _start,
         uint256 _cliff,
         uint256 _duration,
-        uint256 totalTokens
+        uint256 totalTokens,
+        bool revokable
     ) public onlyOwner poolReady returns (TokenVesting) {
-        cache[_beneficiary].push(new TokenVesting(_beneficiary, _start, _cliff, _duration, true));
+        cache[_beneficiary].push(new TokenVesting(_beneficiary, _start, _cliff, _duration, revokable));
 
         uint newIndex = cache[_beneficiary].length - 1;
 
