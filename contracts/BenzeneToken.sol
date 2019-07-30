@@ -27,12 +27,16 @@ contract BenzeneToken is TokenUpdate {
         _legacyToken = DetailedERC20(oldBzn);
         
         GamePoolAddress = gamePool;
-
-        balances[teamPool] = _legacyToken.balanceOf(oldTeamPool);
+        
+        uint256 teampool_balance =  _legacyToken.balanceOf(oldTeamPool);
+        balances[teamPool] = teampool_balance;
+        totalSupply_ = totalSupply_.add(teampool_balance);
         TeamPoolAddress = teamPool;
 
 
-        balances[advisorPool] = _legacyToken.balanceOf(oldAdvisorPool);
+        uint256 advisor_balance =  _legacyToken.balanceOf(oldTeamPool);
+        balances[advisorPool] = advisor_balance;
+        totalSupply_ = totalSupply_.add(advisor_balance);
         AdvisorPoolAddress = advisorPool;
                     
         TeamPool(teamPool).setToken(this);
