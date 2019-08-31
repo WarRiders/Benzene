@@ -20,21 +20,32 @@ contract BenzeneToken is TokenUpdate {
     constructor(address gamePool,
                 address teamPool, //vest
                 address advisorPool,
-                address oldBzn,
                 address oldTeamPool,
-                address oldAdvisorPool) public DetailedERC20(name, symbol, decimals) {
+                address oldAdvisorPool,
+                address[] oldBzn) public DetailedERC20(name, symbol, decimals) {
         
-        _legacyToken = DetailedERC20(oldBzn);
+        require(oldBzn.length > 0);
+        
+        DetailedERC20 _legacyToken; //Save the last token (should be latest version)
+        for (uint i = 0; i < oldBzn.length; i++) {
+            //Ensure this is an actual token
+            _legacyToken = DetailedERC20(oldBzn[i]);
+            
+            //Now register it for update
+            _legacyTokens[oldBzn[i]] = true;
+        }
         
         GamePoolAddress = gamePool;
         
         uint256 teampool_balance =  _legacyToken.balanceOf(oldTeamPool);
+        require(teampool_balance > 0); //Ensure the last token actually has a balance
         balances[teamPool] = teampool_balance;
         totalSupply_ = totalSupply_.add(teampool_balance);
         TeamPoolAddress = teamPool;
 
-
-        uint256 advisor_balance =  _legacyToken.balanceOf(oldTeamPool);
+        
+        uint256 advisor_balance =  _legacyToken.balanceOf(oldAdvisorPool);
+        require(advisor_balance > 0); //Ensure the last token actually has a balance
         balances[advisorPool] = advisor_balance;
         totalSupply_ = totalSupply_.add(advisor_balance);
         AdvisorPoolAddress = advisorPool;
@@ -43,10 +54,13 @@ contract BenzeneToken is TokenUpdate {
         AdvisorPool(advisorPool).setToken(this);
     }
   
-  function approveAndCall(address spender, uint tokens, bytes memory data) public returns (bool success) {
+  function approveAndCall(address spender, uint tokens, bytes memory data) public payable returns (bool success) {
       super.approve(spender, tokens);
       
-      ApproveAndCallFallBack(spender).receiveApproval(msg.sender, tokens, address(this), data);
+      ApproveAndCallFallBack toCall = ApproveAndCallFallBack(spender);
+      
+      require(toCall.receiveApproval.value(msg.value)(msg.sender, tokens, address(this), data));
+      
       return true;
   }
 }
