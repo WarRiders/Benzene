@@ -6,7 +6,7 @@ import "./StandbyGamePool.sol";
 import "./TeamPool.sol";
 import "./AdvisorPool.sol";
 
-contract BenzeneToken is TokenUpdate {
+contract BenzeneToken is TokenUpdate, ApproveAndCallFallBack {
     using SafeMath for uint256;
 
     string public constant name = "Benzene";
@@ -60,6 +60,12 @@ contract BenzeneToken is TokenUpdate {
       ApproveAndCallFallBack toCall = ApproveAndCallFallBack(spender);
       
       require(toCall.receiveApproval.value(msg.value)(msg.sender, tokens, address(this), data));
+      
+      return true;
+  }
+  
+  function receiveApproval(address from, uint256 tokens, address token, bytes memory data) public payable returns (bool) {
+      super.migrate(token, from, tokens);
       
       return true;
   }
