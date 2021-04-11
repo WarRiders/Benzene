@@ -22,6 +22,6 @@
     "openzeppelin-zos": "^1.9.4",
     "run-with-testrpc": "^0.2.1",
     "truffle": "^3.4.9",
-    "truffle-hdwallet-provider": "0.0.7-beta.0",
+    "truffle-hdwallet-provider": "0.0.7-beta.0"
   }
 }
