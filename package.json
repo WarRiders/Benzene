@@ -1,6 +1,6 @@
 {
   "name": "@warriders/bzn-core",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "",
   "main": "truffle-config.js",
   "directories": {
@@ -13,13 +13,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "openzeppelin-solidity": "^1.12.0",
+    "zos-lib": "^1.4.1"
+  },
+  "devDependencies": {
     "child_process": "^1.0.2",
     "ethereumjs-testrpc": "^4.0.1",
-    "openzeppelin-solidity": "^1.12.0",
     "openzeppelin-zos": "^1.9.4",
     "run-with-testrpc": "^0.2.1",
     "truffle": "^3.4.9",
     "truffle-hdwallet-provider": "0.0.7-beta.0",
-    "zos-lib": "^1.4.1"
   }
 }
