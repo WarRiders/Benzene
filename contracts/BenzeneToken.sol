@@ -35,6 +35,8 @@ contract BenzeneToken is TokenUpdate, ApproveAndCallFallBack {
             _legacyTokens[oldBzn[i]] = true;
         }
         
+        defaultLegacyToken = _legacyToken;
+        
         GamePoolAddress = gamePool;
         
         uint256 teampool_balance =  _legacyToken.balanceOf(oldTeamPool);

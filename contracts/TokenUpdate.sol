@@ -9,6 +9,8 @@ contract TokenUpdate is StandardBurnableToken, DetailedERC20 {
     
     mapping(address => bool) internal _legacyTokens;
     
+    address internal defaultLegacyToken;
+    
     function _mint(address _to, uint256 _amount) internal returns (bool) {
         totalSupply_ = totalSupply_.add(_amount);
         balances[_to] = balances[_to].add(_amount);
@@ -48,5 +50,9 @@ contract TokenUpdate is StandardBurnableToken, DetailedERC20 {
       uint256 allowance = legacyToken.allowance(account, this);
       uint256 amount = Math.min256(balance, allowance);
       migrate(token, account, amount);
+  }
+  
+  function migrateAll(address account) public {
+      migrateAll(defaultLegacyToken, account);
   }
 }

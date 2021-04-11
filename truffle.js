@@ -27,5 +27,6 @@ module.exports = {
     network_id: 1,
     gasPrice: 4500000000
    }
-  }
+  },
+  solc: '/usr/local/bin/solc',
 };

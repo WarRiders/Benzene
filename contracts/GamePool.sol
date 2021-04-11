@@ -22,6 +22,10 @@ contract GamePool is Migratable, TokenPool, Ownable {
     
     event Redeem(address indexed user, uint256 indexed _tokenId, uint256 amount);
     
+    address public gameBalance;
+    uint256 public tokensRedeemed;
+    uint256 public limitAmount;
+    uint256 public limitStart;
     
     function initialize(address tokenAdr,
                         address carAdr,
@@ -81,5 +85,24 @@ contract GamePool is Migratable, TokenPool, Ownable {
         token = tokenUpdate;
         
         tokenUpdate.migrateAll(address(this));
+    }
+
+    function setGameBalance(address _gameBalance) public onlyOwner {
+        gameBalance = _gameBalance;
+    }
+    function setLimitAndStart(uint256 amount) public onlyOwner {
+        limitAmount = amount;
+        limitStart = block.timestamp;
+    }
+    function dailyLimit() public view returns (uint256) {
+        uint256 totalLimit = (((block.timestamp - limitStart) / 86400) + 1) * limitAmount;
+        uint256 limitLeft = totalLimit - tokensRedeemed;
+        return limitLeft;
+    }
+    function rewardPlayer(address player, uint256 amount) public {
+        require(msg.sender == gameBalance);
+        require(amount <= dailyLimit());
+        transferTo(player, amount);
+        tokensRedeemed += amount;
     }
 }
