@@ -12,6 +12,10 @@ contract BenzeneToken is TokenUpdate, ApproveAndCallFallBack {
     string public constant name = "Benzene";
     string public constant symbol = "BZN";
     uint8 public constant decimals = 18;
+    uint256 public constant INITIAL_SUPPLY = 100000000 * (10 ** uint256(decimals));
+    uint256 public constant GAME_POOL_INIT = 75000000 * (10 ** uint256(decimals));
+    uint256 public constant TEAM_POOL_INIT = 20000000 * (10 ** uint256(decimals));
+    uint256 public constant ADVISOR_POOL_INIT = 5000000 * (10 ** uint256(decimals));
 
     address public GamePoolAddress;
     address public TeamPoolAddress;
@@ -19,42 +23,23 @@ contract BenzeneToken is TokenUpdate, ApproveAndCallFallBack {
 
     constructor(address gamePool,
                 address teamPool, //vest
-                address advisorPool,
-                address oldTeamPool,
-                address oldAdvisorPool,
-                address[] oldBzn) public DetailedERC20(name, symbol, decimals) {
-        
-        require(oldBzn.length > 0);
-        
-        DetailedERC20 _legacyToken; //Save the last token (should be latest version)
-        for (uint i = 0; i < oldBzn.length; i++) {
-            //Ensure this is an actual token
-            _legacyToken = DetailedERC20(oldBzn[i]);
-            
-            //Now register it for update
-            _legacyTokens[oldBzn[i]] = true;
-        }
-        
-        defaultLegacyToken = _legacyToken;
-        
-        GamePoolAddress = gamePool;
-        
-        uint256 teampool_balance =  _legacyToken.balanceOf(oldTeamPool);
-        require(teampool_balance > 0); //Ensure the last token actually has a balance
-        balances[teamPool] = teampool_balance;
-        totalSupply_ = totalSupply_.add(teampool_balance);
-        TeamPoolAddress = teamPool;
-
-        
-        uint256 advisor_balance =  _legacyToken.balanceOf(oldAdvisorPool);
-        require(advisor_balance > 0); //Ensure the last token actually has a balance
-        balances[advisorPool] = advisor_balance;
-        totalSupply_ = totalSupply_.add(advisor_balance);
-        AdvisorPoolAddress = advisorPool;
+                address advisorPool) public DetailedERC20(name, symbol, decimals) {
+                    totalSupply_ = INITIAL_SUPPLY;
                     
-        TeamPool(teamPool).setToken(this);
-        AdvisorPool(advisorPool).setToken(this);
-    }
+                    balances[gamePool] = GAME_POOL_INIT;
+                    GamePoolAddress = gamePool;
+
+                    balances[teamPool] = TEAM_POOL_INIT;
+                    TeamPoolAddress = teamPool;
+
+
+                    balances[advisorPool] = ADVISOR_POOL_INIT;
+                    AdvisorPoolAddress = advisorPool;
+
+                    StandbyGamePool(gamePool).setToken(this);
+                    TeamPool(teamPool).setToken(this);
+                    AdvisorPool(advisorPool).setToken(this);
+                }
   
   function approveAndCall(address spender, uint tokens, bytes memory data) public payable returns (bool success) {
       super.approve(spender, tokens);
