@@ -1,7 +1,7 @@
 {
   "name": "@warriders/bzn-core",
-  "version": "2.1.1",
-  "description": "",
+  "version": "2.1.2",
+  "description": "The BZN Smart Contracts used in WarRiders",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "eddkek",
   "license": "ISC",
   "dependencies": {
     "openzeppelin-solidity": "^1.12.0",
