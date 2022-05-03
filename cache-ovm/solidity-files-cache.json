@@ -1,0 +1,1242 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/edkek/Projects/bzn-core/contracts/base/AbstractBenzeneToken.sol": {
+      "lastModificationDate": 1638329673550,
+      "contentHash": "1b5df27a703fb1941d8125201789faa1",
+      "sourceName": "contracts/base/AbstractBenzeneToken.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IBenzeneToken.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "AbstractBenzeneToken"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/base/IBenzeneToken.sol": {
+      "lastModificationDate": 1638329693330,
+      "contentHash": "ba31a88843bbd853a73543de1166f576",
+      "sourceName": "contracts/base/IBenzeneToken.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./ITokenMigratable.sol",
+        "./IApproveAndCallFallBack.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "IBenzeneToken"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/base/ITokenMigratable.sol": {
+      "lastModificationDate": 1638329693570,
+      "contentHash": "82f95fb494d1257c3d36d3ef308f2cd2",
+      "sourceName": "contracts/base/ITokenMigratable.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "ITokenMigratable"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/base/IApproveAndCallFallBack.sol": {
+      "lastModificationDate": 1638329733280,
+      "contentHash": "73c716f340b1d263a3f85b83d2fc82d8",
+      "sourceName": "contracts/base/IApproveAndCallFallBack.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "IApproveAndCallFallBack"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1638329876610,
+      "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/MigratedBenzeneToken.sol": {
+      "lastModificationDate": 1638330854630,
+      "contentHash": "856df1da26e904993b27bfbcedd6e18e",
+      "sourceName": "contracts/MigratedBenzeneToken.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./base/IApproveAndCallFallBack.sol",
+        "./base/AbstractBenzeneToken.sol",
+        "./TokenUpdate.sol",
+        "./pools/game/StandbyGamePool.sol",
+        "./pools//team/TeamPool.sol",
+        "./pools/advisor/AdvisorPool.sol",
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "MigratedBenzeneToken"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/TokenUpdate.sol": {
+      "lastModificationDate": 1638330732270,
+      "contentHash": "59044ee688aacdceb4d3137d031b7442",
+      "sourceName": "contracts/TokenUpdate.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol",
+        "@openzeppelin/contracts/math/Math.sol",
+        "./base/ITokenMigratable.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "TokenUpdate"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/pools/game/StandbyGamePool.sol": {
+      "lastModificationDate": 1638329695600,
+      "contentHash": "663d97cacf2317c404d95928a048efb1",
+      "sourceName": "contracts/pools/game/StandbyGamePool.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "../TokenPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "StandbyGamePool"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/pools/team/TeamPool.sol": {
+      "lastModificationDate": 1638329695790,
+      "contentHash": "cf0d9b7ec66d95f22fd5136b1f6842b1",
+      "sourceName": "contracts/pools/team/TeamPool.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../tools/TokenVesting.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "../TokenPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "TeamPool"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/pools/advisor/AdvisorPool.sol": {
+      "lastModificationDate": 1638329720580,
+      "contentHash": "ae2328468909bec04c97612b5ab37ebe",
+      "sourceName": "contracts/pools/advisor/AdvisorPool.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../tools/TokenVesting.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "../TokenPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "AdvisorPool"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1638329876610,
+      "contentHash": "8065b340476f61365c076897199425f1",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/Context.sol",
+        "./IERC20.sol",
+        "../../math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol": {
+      "lastModificationDate": 1638329876610,
+      "contentHash": "1603b7aab78c87467dde869fd19ec86b",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/Context.sol",
+        "./ERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20Burnable"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/math/Math.sol": {
+      "lastModificationDate": 1638329876550,
+      "contentHash": "e5c844515b04deabacef7eb872abc384",
+      "sourceName": "@openzeppelin/contracts/math/Math.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Math"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1638329876550,
+      "contentHash": "2adbd82f6d055a4751566d4671512b03",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+      "lastModificationDate": 1638329876550,
+      "contentHash": "e03e12206057e809eb76c5f681170c32",
+      "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "SafeMath"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1638329876550,
+      "contentHash": "6748815a5b45c4aeeda56819f41190e0",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/pools/TokenPool.sol": {
+      "lastModificationDate": 1638329694690,
+      "contentHash": "342cfc60af17537b1fd811101991217e",
+      "sourceName": "contracts/pools/TokenPool.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "TokenPool"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/tools/TokenVesting.sol": {
+      "lastModificationDate": 1638331766700,
+      "contentHash": "833587a4f71ec3fa918030be489b6b4a",
+      "sourceName": "contracts/tools/TokenVesting.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "TokenVesting"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@eth-optimism/contracts/libraries/standards/L2StandardERC20.sol": {
+      "lastModificationDate": 1638330168040,
+      "contentHash": "bfa2540adf406e0c3dad1091f693f2b9",
+      "sourceName": "@eth-optimism/contracts/libraries/standards/L2StandardERC20.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "./IL2StandardERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.16 <0.8.0"
+      ],
+      "artifacts": [
+        "L2StandardERC20"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@eth-optimism/contracts/libraries/standards/IL2StandardERC20.sol": {
+      "lastModificationDate": 1638330168040,
+      "contentHash": "f847be9c1c92f3f17a459bb724dfcadc",
+      "sourceName": "@eth-optimism/contracts/libraries/standards/IL2StandardERC20.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.16 <0.8.0"
+      ],
+      "artifacts": [
+        "IL2StandardERC20"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/introspection/IERC165.sol": {
+      "lastModificationDate": 1638329876550,
+      "contentHash": "0d62a8380952235f135dae91590f90a3",
+      "sourceName": "@openzeppelin/contracts/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "lastModificationDate": 1638329876610,
+      "contentHash": "e82621b83943f11c44988c60e83d6ebc",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC721"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol": {
+      "lastModificationDate": 1638329876610,
+      "contentHash": "eaebc3874248c26f6ea0b13b9a140a94",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC721.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Enumerable"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/NFT/ICarToken.sol": {
+      "lastModificationDate": 1638333229350,
+      "contentHash": "0a3ede74acddea6493bfc921be7b456b",
+      "sourceName": "contracts/NFT/ICarToken.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol",
+        "@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "ICarToken"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol": {
+      "lastModificationDate": 1638329876610,
+      "contentHash": "370e7a48f316401b5063bcb604843e1b",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC721.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Metadata"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/pools/game/GamePool.sol": {
+      "lastModificationDate": 1638331313610,
+      "contentHash": "f0d6ec61e6742d7a3e3a9e3d0b77c8cb",
+      "sourceName": "contracts/pools/game/GamePool.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../TokenUpdate.sol",
+        "../../base/lib/upgrades/Migratable.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "../TokenPool.sol",
+        "../../NFT/ICarToken.sol",
+        "../../NFT/ICarFactory.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": []
+    },
+    "/home/edkek/Projects/bzn-core/contracts/base/lib/upgrades/Migratable.sol": {
+      "lastModificationDate": 1638329693850,
+      "contentHash": "95abc830e6356ddbbeac858369f702b8",
+      "sourceName": "contracts/base/lib/upgrades/Migratable.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "Migratable"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/NFT/ICarFactory.sol": {
+      "lastModificationDate": 1638331300770,
+      "contentHash": "f776fb7c0ed557c2360089cbcc3d4192",
+      "sourceName": "contracts/NFT/ICarFactory.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "ICarFactory"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/pools/game/FaucetGamePool.sol": {
+      "lastModificationDate": 1638329695170,
+      "contentHash": "82a83f7deeb97e3568f7b9c62fd88ac0",
+      "sourceName": "contracts/pools/game/FaucetGamePool.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "../TokenPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "FaucetGamePool"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/L2/optimism/L2BenzeneToken.sol": {
+      "lastModificationDate": 1638334123850,
+      "contentHash": "5bbf64f3857babddbf62442e8749e8f7",
+      "sourceName": "contracts/L2/optimism/L2BenzeneToken.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@eth-optimism/contracts/libraries/standards/L2StandardERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "L2BenzeneToken"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/pools/team/UnrevokableTeamPool.sol": {
+      "lastModificationDate": 1638329696060,
+      "contentHash": "e53afb552a239ea3788764805b37dead",
+      "sourceName": "contracts/pools/team/UnrevokableTeamPool.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./TeamPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "UnrevokableTeamPool"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/BenzeneToken.sol": {
+      "lastModificationDate": 1638330854630,
+      "contentHash": "c45144b92be7da48e85f8d40b3e6bd16",
+      "sourceName": "contracts/BenzeneToken.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./base/AbstractBenzeneToken.sol",
+        "./base/IApproveAndCallFallBack.sol",
+        "./TokenUpdate.sol",
+        "./pools/game/StandbyGamePool.sol",
+        "./pools//team/TeamPool.sol",
+        "./pools/advisor/AdvisorPool.sol",
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "BenzeneToken"
+      ]
+    },
+    "/home/edkek/Projects/bzn-core/contracts/tools/strings.sol": {
+      "lastModificationDate": 1638329696200,
+      "contentHash": "32a8081ad7d0df6a8c55c516060c1e18",
+      "sourceName": "contracts/tools/strings.sol",
+      "solcConfig": {
+        "version": "0.7.6",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.6 <=0.8.9"
+      ],
+      "artifacts": [
+        "strings"
+      ]
+    }
+  }
+}

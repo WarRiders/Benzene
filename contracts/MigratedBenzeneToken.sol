@@ -1,43 +1,38 @@
-pragma solidity ^0.4.21;
+pragma solidity >=0.7.6<=0.8.9;
 
-import "./ApproveAndCallFallBack.sol";
+import {IApproveAndCallFallBack} from "./base/IApproveAndCallFallBack.sol";
+import "./base/AbstractBenzeneToken.sol";
 import "./TokenUpdate.sol";
-import "./StandbyGamePool.sol";
-import "./TeamPool.sol";
-import "./AdvisorPool.sol";
+import "./pools/game/StandbyGamePool.sol";
+import "./pools//team/TeamPool.sol";
+import "./pools/advisor/AdvisorPool.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract BenzeneToken is TokenUpdate, ApproveAndCallFallBack {
+contract MigratedBenzeneToken is TokenUpdate, AbstractBenzeneToken {
     using SafeMath for uint256;
-
-    string public constant name = "Benzene";
-    string public constant symbol = "BZN";
-    uint8 public constant decimals = 18;
-
-    address public GamePoolAddress;
-    address public TeamPoolAddress;
-    address public AdvisorPoolAddress;
 
     constructor(address gamePool,
                 address teamPool, //vest
                 address advisorPool,
                 address oldTeamPool,
                 address oldAdvisorPool,
-                address[] oldBzn) public DetailedERC20(name, symbol, decimals) {
+                address[] memory oldBzn) public ERC20(TokenName, TokenSymbol) AbstractBenzeneToken(gamePool, teamPool, advisorPool) {
         
         require(oldBzn.length > 0);
         
-        DetailedERC20 _legacyToken; //Save the last token (should be latest version)
+        ERC20 _legacyToken; //Save the last token (should be latest version)
         for (uint i = 0; i < oldBzn.length; i++) {
             //Ensure this is an actual token
-            _legacyToken = DetailedERC20(oldBzn[i]);
+            _legacyToken = ERC20(oldBzn[i]);
             
             //Now register it for update
             _legacyTokens[oldBzn[i]] = true;
         }
         
-        defaultLegacyToken = _legacyToken;
+        defaultLegacyToken = address(_legacyToken);
         
-        GamePoolAddress = gamePool;
+        //Removed legacy openzeppelin code
+        /* GamePoolAddress = gamePool;
         
         uint256 teampool_balance =  _legacyToken.balanceOf(oldTeamPool);
         require(teampool_balance > 0); //Ensure the last token actually has a balance
@@ -50,24 +45,39 @@ contract BenzeneToken is TokenUpdate, ApproveAndCallFallBack {
         require(advisor_balance > 0); //Ensure the last token actually has a balance
         balances[advisorPool] = advisor_balance;
         totalSupply_ = totalSupply_.add(advisor_balance);
-        AdvisorPoolAddress = advisorPool;
+        AdvisorPoolAddress = advisorPool; */
+        //Old code is above
+        //Below is upgraded code
+        //In old code, we only set the total supply to the old balance of the teampool/advisorpool
+        //So mint that much
+        uint256 teampool_balance =  _legacyToken.balanceOf(oldTeamPool);
+        uint256 advisor_balance =  _legacyToken.balanceOf(oldAdvisorPool);
+        require(teampool_balance > 0); //Ensure the last token actually has a balance
+        require(advisor_balance > 0); //Ensure the last token actually has a balance
+
+        _mint(address(this), teampool_balance + advisor_balance);
+
+        //Then transfer to those tokens
+        _transfer(address(this), teamPool, teampool_balance);
+        _transfer(address(this), advisorPool, advisor_balance);
                     
         TeamPool(teamPool).setToken(this);
         AdvisorPool(advisorPool).setToken(this);
     }
   
-  function approveAndCall(address spender, uint tokens, bytes memory data) public payable returns (bool success) {
+  function approveAndCall(address spender, uint tokens, bytes memory data) external payable returns (bool success) {
       super.approve(spender, tokens);
       
-      ApproveAndCallFallBack toCall = ApproveAndCallFallBack(spender);
-      
-      require(toCall.receiveApproval.value(msg.value)(msg.sender, tokens, address(this), data));
+      IApproveAndCallFallBack toCall = IApproveAndCallFallBack(spender);
+
+      bool result = toCall.receiveApproval{value: msg.value}(msg.sender, tokens, address(this), data);
+      require(result, "approveAndCall response was failed");
       
       return true;
   }
   
-  function receiveApproval(address from, uint256 tokens, address token, bytes memory data) public payable returns (bool) {
-      super.migrate(token, from, tokens);
+  function receiveApproval(address from, uint256 tokens, address token, bytes memory data) external override payable returns (bool) {
+      _migrate(token, from, tokens);
       
       return true;
   }

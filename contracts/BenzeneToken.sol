@@ -1,58 +1,63 @@
-pragma solidity ^0.4.21;
+pragma solidity >=0.7.6<=0.8.9;
 
-import "./ApproveAndCallFallBack.sol";
+import "./base/AbstractBenzeneToken.sol";
+import "./base/IApproveAndCallFallBack.sol";
 import "./TokenUpdate.sol";
-import "./StandbyGamePool.sol";
-import "./TeamPool.sol";
-import "./AdvisorPool.sol";
+import "./pools/game/StandbyGamePool.sol";
+import "./pools//team/TeamPool.sol";
+import "./pools/advisor/AdvisorPool.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract BenzeneToken is TokenUpdate, ApproveAndCallFallBack {
+contract BenzeneToken is AbstractBenzeneToken, TokenUpdate {
     using SafeMath for uint256;
 
-    string public constant name = "Benzene";
-    string public constant symbol = "BZN";
-    uint8 public constant decimals = 18;
-    uint256 public constant INITIAL_SUPPLY = 100000000 * (10 ** uint256(decimals));
-    uint256 public constant GAME_POOL_INIT = 75000000 * (10 ** uint256(decimals));
-    uint256 public constant TEAM_POOL_INIT = 20000000 * (10 ** uint256(decimals));
-    uint256 public constant ADVISOR_POOL_INIT = 5000000 * (10 ** uint256(decimals));
-
-    address public GamePoolAddress;
-    address public TeamPoolAddress;
-    address public AdvisorPoolAddress;
+    uint256 public constant GAME_POOL_INIT    = 75000000000000000000000000;
+    uint256 public constant TEAM_POOL_INIT    = 20000000000000000000000000;
+    uint256 public constant ADVISOR_POOL_INIT = 5000000000000000000000000;
+    uint256 public constant INITIAL_SUPPLY = GAME_POOL_INIT + TEAM_POOL_INIT + ADVISOR_POOL_INIT;
 
     constructor(address gamePool,
                 address teamPool, //vest
-                address advisorPool) public DetailedERC20(name, symbol, decimals) {
-                    totalSupply_ = INITIAL_SUPPLY;
+                address advisorPool) public ERC20(TokenName, TokenSymbol) AbstractBenzeneToken(gamePool, teamPool, advisorPool) {
+                    /*
+                    totalSupply = INITIAL_SUPPLY;
                     
                     balances[gamePool] = GAME_POOL_INIT;
-                    GamePoolAddress = gamePool;
+                    _gamePoolAddress = gamePool;
 
                     balances[teamPool] = TEAM_POOL_INIT;
-                    TeamPoolAddress = teamPool;
+                    _teamPoolAddress = teamPool;
 
 
                     balances[advisorPool] = ADVISOR_POOL_INIT;
-                    AdvisorPoolAddress = advisorPool;
+                    _advisorPoolAddress = advisorPool;
+                    */
+                    //Above is original code
+                    //Below is upgraded code
+                    _mint(address(this), INITIAL_SUPPLY);
 
-                    StandbyGamePool(gamePool).setToken(this);
+                    _transfer(address(this), _gamePoolAddress, GAME_POOL_INIT);
+                    _transfer(address(this), _teamPoolAddress, TEAM_POOL_INIT);
+                    _transfer(address(this), _advisorPoolAddress, ADVISOR_POOL_INIT);
+
+                    StandbyGamePool(payable(gamePool)).setToken(this);
                     TeamPool(teamPool).setToken(this);
                     AdvisorPool(advisorPool).setToken(this);
                 }
   
-  function approveAndCall(address spender, uint tokens, bytes memory data) public payable returns (bool success) {
+  function approveAndCall(address spender, uint tokens, bytes memory data) external payable returns (bool success) {
       super.approve(spender, tokens);
       
-      ApproveAndCallFallBack toCall = ApproveAndCallFallBack(spender);
-      
-      require(toCall.receiveApproval.value(msg.value)(msg.sender, tokens, address(this), data));
+      IApproveAndCallFallBack toCall = IApproveAndCallFallBack(spender);
+
+      bool result = toCall.receiveApproval{value: msg.value}(msg.sender, tokens, address(this), data);
+      require(result, "approveAndCall response was failed");
       
       return true;
   }
   
-  function receiveApproval(address from, uint256 tokens, address token, bytes memory data) public payable returns (bool) {
-      super.migrate(token, from, tokens);
+  function receiveApproval(address from, uint256 tokens, address token, bytes memory data) external override payable returns (bool) {
+      _migrate(token, from, tokens);
       
       return true;
   }
