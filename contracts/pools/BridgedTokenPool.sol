@@ -1,10 +1,9 @@
 pragma solidity >=0.7.6 <=0.8.9;
 
-import {TokenPool} from "./TokenPool.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {IL1ERC20Bridge} from "@eth-optimism/contracts/L1/messaging/IL1ERC20Bridge.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract BridgedTokenPool is TokenPool, Ownable {
+abstract contract BridgedTokenPool {
     bytes32 constant L2_DATA_SLOT =
         keccak256("com.warriders.token.pool.bridge");
 
@@ -15,9 +14,18 @@ contract BridgedTokenPool is TokenPool, Ownable {
         uint32 l2GasLimit;
     }
 
+    modifier restricted() {
+        _checkOwner();
+        _;
+    }
+
     constructor(address standardBridge) {
         _l2Data().bridge = standardBridge;
     }
+
+    function _checkOwner() internal view virtual;
+
+    function l1Token() internal view virtual returns (address);
 
     /**
      * @dev The ProxyData struct stored in this registered Extension instance.
@@ -33,7 +41,7 @@ contract BridgedTokenPool is TokenPool, Ownable {
         address _l2Token,
         address _l2Pool,
         uint32 _l2GasLimit
-    ) external onlyOwner {
+    ) external restricted {
         L2Data storage data = _l2Data();
 
         require(data.l2Pool == address(0), "L2 Already set");
@@ -42,7 +50,7 @@ contract BridgedTokenPool is TokenPool, Ownable {
         data.l2GasLimit = _l2GasLimit;
     }
 
-    function bridgeTokens(uint256 tokenAmount) external onlyOwner {
+    function bridgeTokens(uint256 tokenAmount) external restricted {
         L2Data storage data = _l2Data();
 
         require(data.l2Pool != address(0), "L2 data not set");
@@ -50,7 +58,7 @@ contract BridgedTokenPool is TokenPool, Ownable {
         IL1ERC20Bridge tokenBridge = IL1ERC20Bridge(data.bridge);
 
         tokenBridge.depositERC20To(
-            address(token),
+            l1Token(),
             data.l2Token,
             data.l2Pool,
             tokenAmount,
