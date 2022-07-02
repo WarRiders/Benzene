@@ -1,4 +1,5 @@
-pragma solidity >=0.7.6<=0.8.9;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.7.6 <=0.8.9;
 
 import "./IBenzeneToken.sol";
 
@@ -10,15 +11,15 @@ abstract contract AbstractBenzeneToken is IBenzeneToken {
     address internal _teamPoolAddress;
     address internal _advisorPoolAddress;
 
-    function GamePoolAddress() external override view returns (address) {
+    function GamePoolAddress() external view override returns (address) {
         return _gamePoolAddress;
     }
 
-    function TeamPoolAddress() external override view returns (address) {
+    function TeamPoolAddress() external view override returns (address) {
         return _teamPoolAddress;
     }
 
-    function AdvisorPoolAddress() external override view returns (address) {
+    function AdvisorPoolAddress() external view override returns (address) {
         return _advisorPoolAddress;
     }
 

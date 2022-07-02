@@ -1,11 +1,12 @@
-pragma solidity >=0.7.6<=0.8.9;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.7.6 <=0.8.9;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract TokenPool {
     IERC20 public token;
 
-    modifier poolReady {
+    modifier poolReady() {
         require(address(token) != address(0));
         _;
     }
@@ -16,7 +17,7 @@ contract TokenPool {
         token = newToken;
     }
 
-    function balance() view public returns (uint256) {
+    function balance() public view returns (uint256) {
         return token.balanceOf(address(this));
     }
 
@@ -24,7 +25,7 @@ contract TokenPool {
         return token.transfer(dst, amount);
     }
 
-    function getFrom() view public returns (address) {
+    function getFrom() public view returns (address) {
         return address(this);
     }
 }
