@@ -74,7 +74,7 @@ contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
     function _beforeTokenTransfer(
         address from,
         address to,
-        uint256 amount
+        uint256 //amount - not used
     ) internal virtual override {
         bool fromAllowed = from == address(0) || !addressBlocked[from];
         bool toAllowed = to == address(0) || !addressBlocked[to];
