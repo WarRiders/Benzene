@@ -50,13 +50,25 @@ module.exports = {
         mnemonic: process.env.MNEMONIC,
       },
     },
-    'optimistic-kovan': {
-      chainId: 69,
-      url: 'https://kovan.optimism.io',
+    'optimism': {
+      url: "https://mainnet.optimism.io",
       accounts: {
         mnemonic: process.env.MNEMONIC,
       },
-      gasPrice: 10000,
-    }
+    },
+    // for testnet
+    'optimism-kovan': {
+      url: "https://kovan.optimism.io",
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+    },
+    // for the local dev environment
+    'optimism-local': {
+      url: "http://localhost:8545",
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+    },
   },
 };

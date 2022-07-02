@@ -13,6 +13,7 @@
   "author": "eddkek",
   "license": "ISC",
   "dependencies": {
+    "@eth-optimism/contracts": "^0.5.29",
     "@openzeppelin/contracts": "4.7.0",
     "dotenv": "^10.0.0"
   },
