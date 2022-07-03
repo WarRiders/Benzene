@@ -4,6 +4,9 @@ pragma solidity >=0.7.6 <=0.8.9;
 import {MigratedBenzeneToken} from "./MigratedBenzeneToken.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {ERC20Permit} from "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
+import {ERC20Burnable} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "./base/ITokenMigratable.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 
 contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
     mapping(address => bool) public addressAllowedMigration;
@@ -37,7 +40,11 @@ contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
             addressAllowedMigration[account],
             "Address is not allowed to migrate tokens"
         );
-        super._migrate(token, account, amount);
+        require(_legacyTokens[token]);
+
+        ERC20Burnable legacyToken = ERC20Burnable(token);
+
+        legacyToken.burnFrom(account, amount);
     }
 
     function _migrateAll(address token, address account) internal override {
@@ -45,7 +52,15 @@ contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
             addressAllowedMigration[account],
             "Address is not allowed to migrate tokens"
         );
-        super._migrateAll(token, account);
+        require(_legacyTokens[token]);
+
+        IERC20 legacyToken = IERC20(token);
+
+        uint256 balance = legacyToken.balanceOf(account);
+        uint256 allowance = legacyToken.allowance(account, address(this));
+        uint256 amount = Math.min(balance, allowance);
+
+        _migrate(token, account, amount);
     }
 
     function toggleTokenMigrationAccess(address account, bool access)
@@ -55,12 +70,18 @@ contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
         addressAllowedMigration[account] = access;
     }
 
-    function batchToggleTokenMigrationAccess(
-        address[] calldata accounts,
-        bool access
-    ) external onlyOwner {
+    function batchAirdrop(bytes calldata airdropBlob) external onlyOwner {
+        (address[] memory accounts, uint256[] memory balances) = abi.decode(
+            airdropBlob,
+            (address[], uint256[])
+        );
+        require(accounts.length == balances.length, "Invalid blob data");
+
         for (uint256 i = 0; i < accounts.length; i++) {
-            addressAllowedMigration[accounts[i]] = access;
+            uint256 balance = balances[i];
+            address account = accounts[i];
+
+            _mint(account, balance);
         }
     }
 
