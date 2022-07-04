@@ -12,12 +12,6 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract BenzeneToken is AbstractBenzeneToken, TokenUpdate {
     using SafeMath for uint256;
 
-    uint256 public constant GAME_POOL_INIT = 75000000000000000000000000;
-    uint256 public constant TEAM_POOL_INIT = 20000000000000000000000000;
-    uint256 public constant ADVISOR_POOL_INIT = 5000000000000000000000000;
-    uint256 public constant INITIAL_SUPPLY =
-        GAME_POOL_INIT + TEAM_POOL_INIT + ADVISOR_POOL_INIT;
-
     constructor(
         address gamePool,
         address teamPool, //vest

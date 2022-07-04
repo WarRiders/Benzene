@@ -29,7 +29,12 @@ contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
             oldAdvisorPool,
             oldBzn
         )
-    {}
+    {
+        // Only the gamePool is allow to perform a token migration
+        // This is because gamePool assumes a token migration to next version
+        // is always possible and is required to properly update gamePool.
+        addressAllowedMigration[gamePool] = true;
+    }
 
     function _migrate(
         address token,
@@ -45,6 +50,8 @@ contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
         ERC20Burnable legacyToken = ERC20Burnable(token);
 
         legacyToken.burnFrom(account, amount);
+        // Only burn old tokens, never mint new tokens during migration
+        // New tokens will be given via airdrop
     }
 
     function _migrateAll(address token, address account) internal override {
@@ -63,13 +70,6 @@ contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
         _migrate(token, account, amount);
     }
 
-    function toggleTokenMigrationAccess(address account, bool access)
-        external
-        onlyOwner
-    {
-        addressAllowedMigration[account] = access;
-    }
-
     function batchAirdrop(bytes calldata airdropBlob) external onlyOwner {
         (address[] memory accounts, uint256[] memory balances) = abi.decode(
             airdropBlob,
@@ -83,6 +83,8 @@ contract BenzeneTokenV3 is MigratedBenzeneToken, ERC20Permit, Ownable {
 
             _mint(account, balance);
         }
+
+        require(totalSupply() <= INITIAL_SUPPLY, "Airdrop exceeds totalSupply");
     }
 
     function blocklistAddress(address account) external onlyOwner {
